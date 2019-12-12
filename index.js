@@ -1,6 +1,12 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
+const employee = require("./lib/employee")
+const engineer = require("./lib/engineer")
+const manager = require("./lib/manager")
+const intern = require("./lib/intern")
+
+
 inquirer.prompt([
     {
         message: "Please enter your name",
