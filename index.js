@@ -31,9 +31,8 @@ function startingPrompt() {
             const id = 1
             const email = data.email
             const officeNumber = data.officeNumber
-            const matt = new Manager(name, id, email, officeNumber)
-            console.log(matt)
-
+            const teamMember = new Manager(name, id, email, officeNumber)
+            finalTeamArray.push(teamMember)
             addTeamMembers();
         });
 
@@ -50,8 +49,6 @@ function addTeamMembers() {
     ])
 
         .then(function (data) {
-            console.log(data.addMemberData)
-
 
             switch (data.addMemberData) {
                 case "Yes, add an engineer":
@@ -89,10 +86,9 @@ function addEngineer() {
             const id = 1
             const email = data.email
             const github = data.github
-            const matt = new Engineer(name, id, email, github)
-            console.log(matt)
+            const teamMember = new Engineer(name, id, email, github)
+            finalTeamArray.push(teamMember)
             addTeamMembers()
-
         });
 
 };
@@ -118,16 +114,16 @@ function addIntern() {
             const id = 1
             const email = data.email
             const school = data.school
-            const matt = new Intern(name, id, email, school)
-            console.log(matt)
+            const teamMember = new Intern(name, id, email, school)
+            finalTeamArray.push(teamMember)
             addTeamMembers()
-
         });
 
 };
 
 function compileTeam() {
     console.log("complete!")
+    console.log(finalTeamArray)
 }
 
 
