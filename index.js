@@ -124,6 +124,59 @@ function addIntern() {
 function compileTeam() {
     console.log("complete!")
     console.log(finalTeamArray)
+
+    const htmlArray = []
+    const htmlBeginning = `
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    `
+    htmlArray.push(htmlBeginning);
+
+    for (let i = 0; i < finalTeamArray.length; i++) {
+        let object = `
+        <div>
+            <p>${finalTeamArray[i].title}</p>
+            <p>${finalTeamArray[i].id}</p>
+            <p>${finalTeamArray[i].name}</p>
+            <p>${finalTeamArray[i].email}</p>
+        `
+        if (finalTeamArray[i].officeNumber) {
+            object += `
+            <p>${finalTeamArray[i].officeNumber}</p>
+            `
+        }
+        if (finalTeamArray[i].github) {
+            object += `
+            <p>${finalTeamArray[i].github}</p>
+            `
+        }
+        if (finalTeamArray[i].school) {
+            object += `
+            <p>${finalTeamArray[i].school}</p>
+            `
+        }
+        object += `
+        </div>
+        `
+        htmlArray.push(object)
+    }
+
+    const htmlEnd = `
+    </body>
+    </html>
+    `
+    htmlArray.push(htmlEnd);
+
+    fs.writeFile("./generated-html/doc.html", htmlArray.join(""), function (err) {
+        console.log("error")
+    })
 }
 
 
