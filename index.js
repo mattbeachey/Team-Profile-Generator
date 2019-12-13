@@ -8,7 +8,24 @@ const Intern = require("./lib/intern")
 
 let finalTeamArray = [];
 
+
 function startingPrompt() {
+    inquirer.prompt([
+        {
+            message: "Welcome to Team Generator 5000 &trade;! Please write your team name:",
+            name: "teamname"
+        }
+    ])
+        .then(function(data){
+            const teamName = data.teamname
+            finalTeamArray.push(teamName)
+            addManager();
+        })
+
+    
+}
+
+function addManager() {
     inquirer.prompt([
         {
             message: "What is your team manager's name?",
@@ -136,10 +153,11 @@ function compileTeam() {
     <title>Document</title>
 </head>
 <body>
+<h1>${finalTeamArray[0]}</h1>
     `
     htmlArray.push(htmlBeginning);
 
-    for (let i = 0; i < finalTeamArray.length; i++) {
+    for (let i = 1; i < finalTeamArray.length; i++) {
         let object = `
         <div>
             <p>${finalTeamArray[i].title}</p>
@@ -179,16 +197,5 @@ function compileTeam() {
     })
 }
 
+startingPrompt()
 
-
-startingPrompt();
-
-
-//create function with inquirer Q's for each position type, run as needed
-
-//start with Manager question
-//take results, run new Manager (class)
-//push results into final array
-//then ask if you want to add any engineers, intern, etc
-//repeat above steps for each, add all to final array
-//pull from final array for html generation
