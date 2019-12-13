@@ -1,10 +1,10 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-const employee = require("./lib/employee")
-const engineer = require("./lib/engineer")
-const manager = require("./lib/manager")
-const intern = require("./lib/intern")
+const Employee = require("./lib/employee")
+const Engineer = require("./lib/engineer")
+const Manager = require("./lib/manager")
+const Intern = require("./lib/intern")
 
 let finalTeamArray = [];
 
@@ -27,7 +27,13 @@ function startingPrompt() {
     ])
 
         .then(function (data) {
-            console.log(data)
+            const name = data.name
+            const id = 1
+            const email = data.email
+            const officeNumber = data.officeNumber
+            const matt = new Manager(name, id, email, officeNumber)
+            console.log(matt)
+
             addTeamMembers();
         });
 
@@ -45,7 +51,7 @@ function addTeamMembers() {
 
         .then(function (data) {
             console.log(data.addMemberData)
-        
+
 
             switch (data.addMemberData) {
                 case "Yes, add an engineer":
@@ -79,7 +85,12 @@ function addEngineer() {
     ])
 
         .then(function (data) {
-            console.log(data.name, data.email, data.github)
+            const name = data.name
+            const id = 1
+            const email = data.email
+            const github = data.github
+            const matt = new Engineer(name, id, email, github)
+            console.log(matt)
             addTeamMembers()
 
         });
@@ -103,14 +114,19 @@ function addIntern() {
     ])
 
         .then(function (data) {
-            console.log(data.name, data.email, data.school)
+            const name = data.name
+            const id = 1
+            const email = data.email
+            const school = data.school
+            const matt = new Intern(name, id, email, school)
+            console.log(matt)
             addTeamMembers()
 
         });
 
 };
 
-function compileTeam(){
+function compileTeam() {
     console.log("complete!")
 }
 
